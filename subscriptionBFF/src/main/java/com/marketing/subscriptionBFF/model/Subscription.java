@@ -1,5 +1,7 @@
 package com.marketing.subscriptionBFF.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,21 +13,29 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Subscription {
 
-    @NotNull
+    @ApiModelProperty(value = "Email which will receive the newsletter")
+    @NotNull(message = "Email cannot be null")
+    @JsonProperty("email")
     @Email
     private String email;
 
+    @JsonProperty("first_name")
     private String firstName;
 
+    @JsonProperty("gender")
     private Gender gender;
 
-    @NotNull
+    @NotNull(message = "Date of birth cannot be null")
+    @JsonProperty("date_of_birth")
     private LocalDate dateOfBirth;
 
-    @NotNull
+    @ApiModelProperty(value = "Consent about use of user data")
+    @JsonProperty("consent")
+    @NotNull(message = "Consent cannot be false")
     private boolean consent;
 
-    @NotNull
+    @NotNull(message = "NewsletterId cannot be null")
+    @JsonProperty("newsletter_id")
     private String newsletterId;
 
 }
