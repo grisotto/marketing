@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -31,7 +32,8 @@ public class Subscription {
 
     @ApiModelProperty(value = "Consent about use of user data")
     @JsonProperty("consent")
-    @NotNull(message = "Consent cannot be false")
+    @AssertTrue(message = "Consent cannot be false")
+    @NotNull
     private boolean consent;
 
     @NotNull(message = "NewsletterId cannot be null")
