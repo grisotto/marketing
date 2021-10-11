@@ -1,6 +1,6 @@
 package com.marketing.subscriptionBFF.controller;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 import com.marketing.subscriptionBFF.service.api.CreateSubscriptionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,10 +33,8 @@ public class CreateSubscriptionController {
     })
     @PostMapping("/subscription")
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody @Valid Subscription subscription) {
+    public String create(@RequestBody @Valid SubscriptionDTO subscriptionDTO) {
         log.info("Creating subscription");
-
-        return createSubscriptionService.create(subscription);
-//        return MessageProperties.findMessage("ERROR-01");
+        return createSubscriptionService.create(subscriptionDTO);
     }
 }

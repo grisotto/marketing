@@ -26,8 +26,7 @@ public class CancelSubscriptionController {
     })
     @DeleteMapping("/subscription/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean cancel(@PathVariable("id") String id) {
-
-        return cancelSubscriptionService.cancel(id);
+    public void cancel(@PathVariable("id") Long id) {
+        cancelSubscriptionService.cancel(id);
     }
 }

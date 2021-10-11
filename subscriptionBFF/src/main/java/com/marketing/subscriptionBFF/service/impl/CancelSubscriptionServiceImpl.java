@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CancelSubscriptionServiceImpl implements CancelSubscriptionService {
 
-    private CancelSubscriptionClient client;
+    private final CancelSubscriptionClient client;
 
     public CancelSubscriptionServiceImpl(CancelSubscriptionClient cancelSubscriptionClient) {
         this.client = cancelSubscriptionClient;
@@ -19,7 +19,7 @@ public class CancelSubscriptionServiceImpl implements CancelSubscriptionService 
 
 
     @Override
-    public boolean cancel(String id) {
+    public void cancel(Long id) {
         try {
             ResponseEntity<String> response = client.cancel(id);
 
@@ -27,8 +27,6 @@ public class CancelSubscriptionServiceImpl implements CancelSubscriptionService 
                 //todo: create exception ou propage the exception received. FeignExceptionHandler fix it
                 log.error("Request failed. Reason: {}", response.getStatusCode());
             }
-
-            return true;
 
         } catch (Exception ex) {
             log.error("Request failed. Reason: {}", ex);

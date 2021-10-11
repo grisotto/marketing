@@ -1,9 +1,9 @@
 package com.marketing.subscriptionBFF.service.api;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 
 public interface GetSubscriptionService {
 
-    Subscription get(String id);
+    SubscriptionDTO get(Long id);
 
 }

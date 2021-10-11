@@ -1,6 +1,6 @@
 package com.marketing.subscriptionBFF.controller;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 import com.marketing.subscriptionBFF.service.api.GetAllSubscriptionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,9 +34,8 @@ public class GetAllSubscriptionController {
     })
     @GetMapping("/subscriptions")
     @ResponseStatus(HttpStatus.OK)
-    public List<Subscription> getAll() {
+    public List<SubscriptionDTO> getAll() {
 
         return getAllSubscriptionService.getAll();
-//        return MessageProperties.findMessage("ERROR-01");
     }
 }

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "cancel-client", url = "http://localhost:8081")
 public interface CancelSubscriptionClient {
 
-    @DeleteMapping("/subscription/{id}")
-    ResponseEntity<String> cancel(@PathVariable("id") String id);
+    @DeleteMapping("/api/subscription/{id}")
+    ResponseEntity<String> cancel(@PathVariable("id") Long id);
 }

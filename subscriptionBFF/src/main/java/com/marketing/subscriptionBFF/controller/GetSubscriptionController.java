@@ -1,6 +1,6 @@
 package com.marketing.subscriptionBFF.controller;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 import com.marketing.subscriptionBFF.service.api.GetSubscriptionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,9 +29,8 @@ public class GetSubscriptionController {
     })
     @GetMapping("/subscription/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Subscription get(@PathVariable("id") String id) {
+    public SubscriptionDTO get(@PathVariable("id") Long id) {
 
         return getSubscriptionService.get(id);
-//        return MessageProperties.findMessage("ERROR-01");
     }
 }

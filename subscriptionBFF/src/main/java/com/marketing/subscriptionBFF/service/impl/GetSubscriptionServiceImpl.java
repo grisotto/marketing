@@ -1,6 +1,6 @@
 package com.marketing.subscriptionBFF.service.impl;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 import com.marketing.subscriptionBFF.service.api.GetSubscriptionService;
 import com.marketing.subscriptionBFF.service.client.GetSubscriptionClient;
 import lombok.extern.log4j.Log4j2;
@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetSubscriptionServiceImpl implements GetSubscriptionService {
 
-    private GetSubscriptionClient client;
+    private final GetSubscriptionClient client;
 
     public GetSubscriptionServiceImpl(GetSubscriptionClient client) {
         this.client = client;
     }
 
     @Override
-    public Subscription get(String id) {
+    public SubscriptionDTO get(Long id) {
         try {
-            ResponseEntity<Subscription> response = client.get(id);
+            ResponseEntity<SubscriptionDTO> response = client.get(id);
 
             if (response.getStatusCode() != HttpStatus.CREATED) {
                 //todo: create exception ou propage the exception received. FeignExceptionHandler fix it

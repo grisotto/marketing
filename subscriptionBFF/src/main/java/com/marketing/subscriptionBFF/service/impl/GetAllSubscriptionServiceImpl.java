@@ -1,6 +1,6 @@
 package com.marketing.subscriptionBFF.service.impl;
 
-import com.marketing.subscriptionBFF.model.Subscription;
+import com.marketing.subscriptionBFF.model.SubscriptionDTO;
 import com.marketing.subscriptionBFF.service.api.GetAllSubscriptionService;
 import com.marketing.subscriptionBFF.service.client.GetAllSubscriptionClient;
 import lombok.extern.log4j.Log4j2;
@@ -21,9 +21,9 @@ public class GetAllSubscriptionServiceImpl implements GetAllSubscriptionService 
     }
 
     @Override
-    public List<Subscription> getAll() {
+    public List<SubscriptionDTO> getAll() {
         try {
-            ResponseEntity<List<Subscription>> response = client.getAll();
+            ResponseEntity<List<SubscriptionDTO>> response = client.getAll();
 
             if (response.getStatusCode() != HttpStatus.CREATED) {
                 //todo: create exception ou propage the exception received. FeignExceptionHandler fix it
