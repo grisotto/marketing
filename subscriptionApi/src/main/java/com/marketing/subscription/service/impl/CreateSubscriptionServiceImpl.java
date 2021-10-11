@@ -3,6 +3,8 @@ package com.marketing.subscription.service.impl;
 import com.marketing.subscription.entity.Newsletter;
 import com.marketing.subscription.entity.Subscription;
 import com.marketing.subscription.entity.User;
+import com.marketing.subscription.event.EventDispatcher;
+import com.marketing.subscription.event.SubscriptionEvent;
 import com.marketing.subscription.model.SubscriptionDTO;
 import com.marketing.subscription.repository.NewsletterRepository;
 import com.marketing.subscription.repository.SubscriptionRepository;
@@ -23,10 +25,13 @@ public class CreateSubscriptionServiceImpl implements CreateSubscriptionService 
 
     private final SubscriptionRepository subscriptionRepository;
 
-    public CreateSubscriptionServiceImpl(NewsletterRepository newsletterRepository, UserRepository userRepository, SubscriptionRepository subscriptionRepository) {
+    private final EventDispatcher eventDispatcher;
+
+    public CreateSubscriptionServiceImpl(NewsletterRepository newsletterRepository, UserRepository userRepository, SubscriptionRepository subscriptionRepository, EventDispatcher eventDispatcher) {
         this.newsletterRepository = newsletterRepository;
         this.userRepository = userRepository;
         this.subscriptionRepository = subscriptionRepository;
+        this.eventDispatcher = eventDispatcher;
     }
 
 
@@ -51,6 +56,7 @@ public class CreateSubscriptionServiceImpl implements CreateSubscriptionService 
                 return subscriptionRepository.save(save);
             });
 
+            eventDispatcher.send(new SubscriptionEvent(subscription));
 
             return subscription.getId().toString();
 
