@@ -1,10 +1,16 @@
-FROM alpine:latest
+FROM eclipse-temurin:11.0.12_7-jre-focal as builder
+WORKDIR extracted
 
-RUN mkdir /app
-ADD /target/mailer-*.jar /app/mailer.jar
+ADD ./target/*.jar app.jar
+RUN java -Djarmode=layertools -jar app.jar extract
+
+FROM eclipse-temurin:11.0.12_7-jre-focal
+WORKDIR application
+COPY --from=builder extracted/dependencies/ ./
+COPY --from=builder extracted/spring-boot-loader/ ./
+COPY --from=builder extracted/snapshot-dependencies/ ./
+COPY --from=builder extracted/application/ ./
 
 EXPOSE 8080
 
-run apk --update add openjdk11
-
-ENTRYPOINT ["java","-jar", "/app/mailer.jar"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
