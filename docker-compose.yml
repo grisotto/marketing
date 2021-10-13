@@ -1,0 +1,74 @@
+version: "2.1"
+
+services:
+  subscriptionbff:
+    build: subscriptionbff-service
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: '512m'
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-tier
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  subscriptionapi:
+    build: subscriptionapi-service
+    mem_limit: 512m
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: '512m'
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-tier
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  mailer:
+    build: mailer-service
+    mem_limit: 512m
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: '512m'
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-tier
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+  rabbitmq:
+    image: rabbitmq:management
+    mem_limit: 512m
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 2s
+      retries: 60
+    networks:
+      - app-tier
+
+networks:
+  app-tier: 
+    name: app-tier
+    driver: bridge
