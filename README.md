@@ -10,12 +10,11 @@
 - [x] Bean validation
 - [ ] Cache
 - [ ] Pagination
-- [ ] Handle exception
-- [ ] Centralized messages
-- [ ] Controller Advise
-- [ ] Environment configuration
+- [X] Handle exception
+- [X] Controller Advise
+- [X] Environment configuration
 - [X] Tracing
-- [ ] Logs
+- [X] Logs
 - [ ] Integration tests
 - [ ] Security
 - [ ] Gateway
@@ -41,12 +40,12 @@
 - [x] Jacoco
 - [ ] Cache
 - [ ] Pagination
-- [ ] Handle exception
-- [ ] Centralized messages
+- [X] Handle exception
+- [X] Centralized messages
 - [ ] Controller Advise
-- [ ] Environment configuration
+- [X] Environment configuration
 - [X] Tracing
-- [ ] Logs
+- [X] Logs
 - [ ] Integration tests
 - [ ] Security
 - [ ] Gateway
