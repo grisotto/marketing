@@ -1,8 +1,6 @@
 package com.marketing.subscription.service.impl;
 
 import com.marketing.subscription.entity.Subscription;
-import com.marketing.subscription.event.EventDispatcher;
-import com.marketing.subscription.event.SubscriptionEvent;
 import com.marketing.subscription.repository.SubscriptionRepository;
 import com.marketing.subscription.service.api.CancelSubscriptionService;
 import com.marketing.subscription.utils.MessageProperties;
@@ -26,8 +24,12 @@ public class CancelSubscriptionServiceImpl implements CancelSubscriptionService 
     public void cancel(Long id) {
 
         Subscription subscription = subscriptionRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST, MessageProperties.findMessage("ERROR-02")));
+                .orElseThrow(() -> {
+                            log.warn("Tried to find the subscriptionId {}, but not found", id);
+                            return new ResponseStatusException(
+                                    HttpStatus.NO_CONTENT, MessageProperties.findMessage("ERROR-02"));
+                        }
+                );
 
         subscriptionRepository.delete(subscription);
 
