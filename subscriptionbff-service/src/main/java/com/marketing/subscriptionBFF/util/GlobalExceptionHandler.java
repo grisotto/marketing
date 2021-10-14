@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(FeignException.BadRequest.class)
+    @ExceptionHandler({FeignException.BadRequest.class, FeignException.NotFound.class})
     public HttpError handleFeignStatusException(FeignException e, HttpServletResponse response) {
         response.setStatus(e.status());
         HttpError error = new HttpError();
