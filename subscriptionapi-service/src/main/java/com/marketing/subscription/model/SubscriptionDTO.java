@@ -1,6 +1,8 @@
 package com.marketing.subscription.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -20,7 +22,12 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(content = JsonInclude.Include.NON_NULL)
 public class SubscriptionDTO {
+
+    @JsonProperty("id")
+    private Long id;
 
     @ApiModelProperty(value = "Email which will receive the newsletter")
     @NotNull(message = "Email cannot be null")
@@ -53,6 +60,7 @@ public class SubscriptionDTO {
     private long newsletterId;
 
     public SubscriptionDTO(Subscription subscription) {
+        this.id = subscription.getId();
         User user = subscription.getUser();
         this.email = user.getEmail();
         this.firstName = user.getFirstName();

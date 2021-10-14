@@ -23,8 +23,11 @@ public class GetSubscriptionServiceImpl implements GetSubscriptionService {
     public SubscriptionDTO get(Long id) {
         return subscriptionRepository.findById(id)
                 .map(SubscriptionDTO::new)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, MessageProperties.findMessage("ERROR-02")));
+                .orElseThrow(() -> {
+                    log.warn("Tried to find the subscriptionId {}, but not found", id);
+                    return new ResponseStatusException(
+                            HttpStatus.NOT_FOUND, MessageProperties.findMessage("ERROR-02"));
+                });
 
     }
 
