@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CreateSubscriptionClient {
 
     @PostMapping("/api/subscriptions")
-    ResponseEntity<String> create(@RequestBody SubscriptionDTO subscriptionDTO);
+    ResponseEntity<Long> create(@RequestBody SubscriptionDTO subscriptionDTO);
 }

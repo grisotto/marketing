@@ -18,8 +18,8 @@ public class CreateSubscriptionServiceImpl implements CreateSubscriptionService 
     }
 
     @Override
-    public String create(SubscriptionDTO subscriptionDTO) {
-        ResponseEntity<String> response = client.create(subscriptionDTO);
+    public Long create(SubscriptionDTO subscriptionDTO) {
+        ResponseEntity<Long> response = client.create(subscriptionDTO);
         return response.getBody();
 
     }

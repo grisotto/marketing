@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CreateSubscriptionController.class)
 public class CreateSubscriptionControllerTest {
 
+    public static final String API_SUBSCRIPTIONS = "/api/subscriptions";
     @MockBean
     private CreateSubscriptionService createSubscriptionService;
 
@@ -51,10 +52,10 @@ public class CreateSubscriptionControllerTest {
         subscriptionDTO.setGender(Gender.MALE);
         subscriptionDTO.setFirstName("First name");
         subscriptionDTO.setNewsletterId(1);
-        given(createSubscriptionService.create(subscriptionDTO)).willReturn("1");
+        given(createSubscriptionService.create(subscriptionDTO)).willReturn(1L);
 
         MockHttpServletResponse response = mvc.perform(
-                        post("/api/subscriptions")
+                        post(API_SUBSCRIPTIONS)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonSubscription.write(subscriptionDTO).getJson())
                                 .accept(MediaType.APPLICATION_JSON))
@@ -73,10 +74,10 @@ public class CreateSubscriptionControllerTest {
         subscriptionDTO.setGender(Gender.MALE);
         subscriptionDTO.setFirstName("First name");
         subscriptionDTO.setNewsletterId(1);
-        given(createSubscriptionService.create(subscriptionDTO)).willReturn("1");
+        given(createSubscriptionService.create(subscriptionDTO)).willReturn(1L);
 
         mvc.perform(
-                        post("/api/subscription")
+                        post(API_SUBSCRIPTIONS)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonSubscription.write(subscriptionDTO).getJson())
                                 .accept(MediaType.APPLICATION_JSON))
@@ -96,10 +97,10 @@ public class CreateSubscriptionControllerTest {
         subscriptionDTO.setGender(Gender.MALE);
         subscriptionDTO.setFirstName("First name");
         subscriptionDTO.setNewsletterId(1);
-        given(createSubscriptionService.create(subscriptionDTO)).willReturn("1");
+        given(createSubscriptionService.create(subscriptionDTO)).willReturn(1L);
 
         mvc.perform(
-                        post("/api/subscription")
+                        post(API_SUBSCRIPTIONS)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonSubscription.write(subscriptionDTO).getJson())
                                 .accept(MediaType.APPLICATION_JSON))
@@ -117,10 +118,10 @@ public class CreateSubscriptionControllerTest {
         subscriptionDTO.setGender(Gender.MALE);
         subscriptionDTO.setFirstName("First name");
         subscriptionDTO.setNewsletterId(1);
-        given(createSubscriptionService.create(subscriptionDTO)).willReturn("1");
+        given(createSubscriptionService.create(subscriptionDTO)).willReturn(1L);
 
         mvc.perform(
-                        post("/api/subscription")
+                        post(API_SUBSCRIPTIONS)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonSubscription.write(subscriptionDTO).getJson())
                                 .accept(MediaType.APPLICATION_JSON))
@@ -138,10 +139,10 @@ public class CreateSubscriptionControllerTest {
         subscriptionDTO.setDateOfBirth(LocalDate.now().minusDays(100));
         subscriptionDTO.setGender(Gender.MALE);
         subscriptionDTO.setFirstName("First name");
-        given(createSubscriptionService.create(subscriptionDTO)).willReturn("1");
+        given(createSubscriptionService.create(subscriptionDTO)).willReturn(1L);
 
         mvc.perform(
-                        post("/api/subscription")
+                        post(API_SUBSCRIPTIONS)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonSubscription.write(subscriptionDTO).getJson())
                                 .accept(MediaType.APPLICATION_JSON))
