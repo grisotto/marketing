@@ -39,8 +39,8 @@ public class CreateSubscriptionServiceImpl implements CreateSubscriptionService 
 
 
     @Override
-    public String create(SubscriptionDTO subscriptionDTO) {
-        Optional<User> userByEmail = userRepository.findBySimpleNaturalId(subscriptionDTO.getEmail());
+    public Long create(SubscriptionDTO subscriptionDTO) {
+        Optional<User> userByEmail = userRepository.findById(subscriptionDTO.getEmail());
 
         User user = userByEmail.orElseGet(() -> {
             log.info("User: {} doesnt exist.", subscriptionDTO.getEmail());
@@ -65,7 +65,7 @@ public class CreateSubscriptionServiceImpl implements CreateSubscriptionService 
         });
 
 
-        return subscription.getId().toString();
+        return subscription.getId();
 
     }
 

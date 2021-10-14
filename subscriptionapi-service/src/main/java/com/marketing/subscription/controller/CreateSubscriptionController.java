@@ -33,7 +33,7 @@ public class CreateSubscriptionController {
     })
     @PostMapping("/subscriptions")
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody @Valid SubscriptionDTO subscriptionDTO) {
+    public Long create(@RequestBody @Valid SubscriptionDTO subscriptionDTO) {
         log.info("Creating a subscription");
 
         return createSubscriptionService.create(subscriptionDTO);
