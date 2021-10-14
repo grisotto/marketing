@@ -1,6 +1,8 @@
 package com.marketing.subscriptionBFF.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -18,7 +20,12 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@JsonInclude(content = JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SubscriptionDTO {
+
+    @JsonProperty("id")
+    private Long id;
 
     @ApiModelProperty(value = "Email which will receive the newsletter")
     @NotNull(message = "Email cannot be null")
