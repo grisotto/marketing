@@ -27,7 +27,7 @@ public class GetAllSubscriptionServiceImpl implements GetAllSubscriptionService 
         log.info("Getting all subscriptions");
         List<Subscription> subscriptions = subscriptionRepository.findAll();
         if (subscriptions.isEmpty()) {
-            log.warn("Subscriptions is empty");
+            log.warn("Dont have any subscription");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
