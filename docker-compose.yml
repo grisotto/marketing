@@ -38,6 +38,8 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+      mysql:
+        condition: service_healthy
   mailer:
     build: mailer-service
     mem_limit: 512m
@@ -63,6 +65,21 @@ services:
     environment:
       eureka.instance.hostname: eureka
       eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka
+    networks:
+      - app-tier
+  mysql:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=subscription-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
     networks:
       - app-tier
   rabbitmq:
