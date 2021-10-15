@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.marketing</groupId>
-    <artifactId>subscriptionApi</artifactId>
+    <artifactId>subscriptionapi-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>subscriptionApi</name>
     <description>Subscription Api</description>
@@ -95,6 +95,10 @@
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>

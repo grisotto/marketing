@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.marketing</groupId>
-    <artifactId>mailer</artifactId>
+    <artifactId>mailer-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mailer</name>
     <description>mailer service</description>
@@ -71,6 +71,10 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <!--        <dependency>-->
         <!--            <groupId>org.springframework.boot</groupId>-->

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(name = "get-all-client", url = "${api.subscriptionapi.url}")
+@FeignClient(contextId = "get-all-client", value = "${api.subscriptionapi.url}")
 public interface GetAllSubscriptionClient {
 
     @GetMapping("/api/subscriptions")

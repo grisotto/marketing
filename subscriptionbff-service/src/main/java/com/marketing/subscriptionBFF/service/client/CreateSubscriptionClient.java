@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "create-client", url = "${api.subscriptionapi.url}")
+@FeignClient(contextId = "create-client", value = "${api.subscriptionapi.url}")
 public interface CreateSubscriptionClient {
 
     @PostMapping("/api/subscriptions")

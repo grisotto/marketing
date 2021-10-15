@@ -1,9 +1,15 @@
+
+### Usage
+1. Build Maven projects with using command: `mvn clean package`
+3. Build Docker images for each module using command, for example: `docker-compose build`
+4. Run projects with: `docker-compose up -d`
+6. Check lgos with `docker-compose logs -f`
 ### Subscription BFF
 
 - [x] Sync controllers
 - [x] Dockerfile
 - [x] Docker-compose
-- [ ] Unit tests
+- [X] Unit tests
 - [x] Swagger
 - [x] Jacoco
 - [x] Feign
@@ -12,14 +18,14 @@
 - [ ] Pagination
 - [X] Handle exception
 - [X] Controller Advise
-- [X] Environment configuration
+- [ ] Environment configuration
 - [X] Tracing
 - [X] Logs
 - [ ] Integration tests
 - [ ] Security
 - [ ] Gateway
 - [ ] Client credentials
-- [ ] Load balancer
+- [X] Load balancer
 - [ ] Secrets
 - [x] Metrics 
 - [ ] Reusable lib
@@ -35,7 +41,7 @@
 - [x] Docker-compose
 - [x] Queue producer
 - [x] Bean validation
-- [ ] Unit tests
+- [X] Unit tests
 - [x] Swagger
 - [x] Jacoco
 - [ ] Cache
@@ -50,7 +56,7 @@
 - [ ] Security
 - [ ] Gateway
 - [ ] Client credentials
-- [ ] Load balancer
+- [x] Load balancer
 - [ ] Secrets
 - [x] Metrics 
 - [ ] Reusable lib
@@ -63,7 +69,7 @@
 - [x] Dockerfile
 - [x] Docker-compose
 - [x] Queue consumer
-- [ ] Unit tests
+- [X] Unit tests
 - [x] Jacoco
 - [ ] Handle exception
 - [ ] Environment configuration
@@ -74,7 +80,6 @@
 - [ ] Security
 - [ ] Gateway
 - [ ] Client credentials
-- [ ] Load balancer
 - [ ] Secrets
 - [ ] Reusable lib
 - [ ] Circuit break
